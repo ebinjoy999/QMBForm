@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<style name="TextAppearance.Form.Section" parent="@style/TextAppearance.AppCompat.Title">-->
+        <!--<item name="android:textAllCaps">true</item>&lt;!&ndash; default textSize: 20sp &ndash;&gt;-->
+    <!--</style>-->
+
+    <style name="TextAppearance.Form.Section" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textAllCaps">true</item><!-- default textSize: 16sp -->
+    </style>
+    <style name="TextAppearance.Form.Label" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:textSize">16sp</item><!-- default textSize: 14sp, font: Regular -->
+    </style>
+    <style name="TextAppearance.Form.Value" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textSize">16sp</item><!-- default textSize: 14sp, font: Medium -->
+    </style>
+    <style name="TextAppearance.Form.Button" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:textAllCaps">true</item><!-- default textSize: 16sp -->
+    </style>
+</resources>
