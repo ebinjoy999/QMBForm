@@ -35,7 +35,7 @@ public class FormTitleFieldCell extends FormBaseCell {
     protected void update() {
         String title = getFormItemDescriptor().getTitle();
         mTextView.setText(title);
-        mTextView.setVisibility(title == null ? GONE : VISIBLE);
+        mTextView.setVisibility((title == null) || (getRowDescriptor().getTitleReplacedByHint())? GONE : VISIBLE);
 
 
         if (getRowDescriptor().getDisabled()) {

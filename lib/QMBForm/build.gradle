@@ -138,6 +138,6 @@ task jacocoTestReport(type: JacocoReport ) {
 }
 
 
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.quemb'

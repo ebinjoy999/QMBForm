@@ -81,6 +81,12 @@ public class RowDescriptor<T> extends FormItemDescriptor {
     private Boolean mRequired = false;
     private Boolean mDisabled = false;
 
+    public Boolean getTitleReplacedByHint() {
+        return isTitleReplacedByHint;
+    }
+
+    private Boolean isTitleReplacedByHint = false;
+
     private List<FormValidator> mValidators;
 
     private List<FormOptionsObject> mSelectorOptions;
@@ -105,11 +111,11 @@ public class RowDescriptor<T> extends FormItemDescriptor {
 
     public static RowDescriptor newInstance(String tag, String rowType, String title) {
 
-        return RowDescriptor.newInstance(tag, rowType, title, null);
+        return RowDescriptor.newInstance(tag, rowType, title, null, false);
 
     }
 
-    public static RowDescriptor newInstance(String tag, String rowType, String title, Value<?> value) {
+    public static RowDescriptor newInstance(String tag, String rowType, String title, Value<?> value, Boolean isTitleReplacedByHint) {
 
         RowDescriptor descriptor = new RowDescriptor();
         descriptor.mTitle = title;
@@ -117,7 +123,7 @@ public class RowDescriptor<T> extends FormItemDescriptor {
         descriptor.mRowType = rowType;
         descriptor.setValue(value);
         descriptor.mValidators = new ArrayList<FormValidator>();
-
+        descriptor.isTitleReplacedByHint = isTitleReplacedByHint;
         return descriptor;
 
     }
@@ -128,7 +134,7 @@ public class RowDescriptor<T> extends FormItemDescriptor {
                 annotation.tag().length() > 0 ? annotation.tag() : field.getName(),
                 annotation.rowDescriptorType(),
                 context.getString(annotation.label()),
-                value);
+                value, false);
         rowDescriptor.setHint(annotation.hint());
         rowDescriptor.setRequired(annotation.required());
         rowDescriptor.setDisabled(annotation.disabled());

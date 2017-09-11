@@ -5,6 +5,7 @@ import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatSeekBar;
 import android.widget.SeekBar;
 
 import java.util.HashMap;
@@ -14,8 +15,9 @@ import java.util.HashMap;
  */
 public class FormIntegerSliderFieldCell extends FormDetailTextInlineFieldCell {
 
-    private SeekBar mSeekBar;
+    private CustomSeekBar mSeekBar;
     public final static String CellConfigMaxKey = "CellConfigMaxKey";
+    public final static String CellConfigMultiplierKey = "CellConfigMultiplierKey";
 
     public FormIntegerSliderFieldCell(Context context, RowDescriptor rowDescriptor) {
         super(context, rowDescriptor);
@@ -23,17 +25,14 @@ public class FormIntegerSliderFieldCell extends FormDetailTextInlineFieldCell {
 
     @Override
     protected void init() {
-
         super.init();
-        mSeekBar = (SeekBar) findViewById(R.id.seekBar);
+        mSeekBar = (CustomSeekBar) findViewById(R.id.seekBar);
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                getDetailTextView().setText(Integer.toString(progress));
+                getDetailTextView().setText(Integer.toString(mSeekBar.getProgress()));
                 onValueChanged(new Value<Integer>(progress));
-
             }
 
             @Override
@@ -63,14 +62,14 @@ public class FormIntegerSliderFieldCell extends FormDetailTextInlineFieldCell {
 
         HashMap<String, Object> config = getRowDescriptor().getCellConfig();
         Integer max = config != null && config.containsKey(CellConfigMaxKey) ? (Integer) config.get(CellConfigMaxKey) : 100;
-
-        mSeekBar.setMax(max);
+        Integer mult = config != null && config.containsKey(CellConfigMultiplierKey) ? (Integer) config.get(CellConfigMultiplierKey) : 1;
+        mSeekBar.setSeekBarConfig(mult,max);
         mSeekBar.setProgress(value.getValue());
         mSeekBar.setEnabled(!getRowDescriptor().getDisabled());
 
     }
 
-    public SeekBar getSeekBar() {
+    public CustomSeekBar getSeekBar() {
         return mSeekBar;
     }
 }

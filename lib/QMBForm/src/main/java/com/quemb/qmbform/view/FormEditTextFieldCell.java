@@ -85,8 +85,7 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     }
 
     protected void updateEditView() {
-
-        String hint = getRowDescriptor().getHint(getContext());
+        String hint = getRowDescriptor().getTitleReplacedByHint()? getRowDescriptor().getTitle() : getRowDescriptor().getHint(getContext());
         if (hint != null) {
             mEditView.setHint(hint);
         }
