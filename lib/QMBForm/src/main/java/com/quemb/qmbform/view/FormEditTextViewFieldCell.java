@@ -4,18 +4,28 @@ import com.quemb.qmbform.R;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 
 import android.content.Context;
+import android.widget.EditText;
 
 /**
  * Created by tonimoeckel on 15.07.14.
  */
 public class FormEditTextViewFieldCell extends FormEditTextFieldCell {
 
-
     public FormEditTextViewFieldCell(Context context,
                                      RowDescriptor rowDescriptor) {
         super(context, rowDescriptor);
     }
 
+    @Override
+    protected void init() {
+        super.init();
+//        super.mEditView = (EditText) findViewById(R.id.editText);
+    }
+
+    @Override
+    protected void update() {
+        super.update();
+    }
 
     @Override
     protected int getResource() {

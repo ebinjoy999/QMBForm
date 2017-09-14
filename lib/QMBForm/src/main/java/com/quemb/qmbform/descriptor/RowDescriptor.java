@@ -3,6 +3,7 @@ package com.quemb.qmbform.descriptor;
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.annotation.FormElement;
 import com.quemb.qmbform.annotation.FormValidator;
+import com.quemb.qmbform.view.FormEditTextFieldCell;
 
 import android.content.Context;
 
@@ -16,6 +17,8 @@ import static com.quemb.qmbform.annotation.FormDescriptorAnnotationFactory.conve
  * Created by tonimoeckel on 14.07.14.
  */
 public class RowDescriptor<T> extends FormItemDescriptor {
+
+
 
     public static final String FormRowDescriptorTypeName = "name";
     public static final String FormRowDescriptorTypeNameVertical = "nameVertical";
@@ -94,6 +97,17 @@ public class RowDescriptor<T> extends FormItemDescriptor {
     private SectionDescriptor mSectionDescriptor;
 
     private int mHint = android.R.string.untitled;
+
+
+
+    public String errorMessage = "";
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     private boolean mLastRowInSection = false;
 

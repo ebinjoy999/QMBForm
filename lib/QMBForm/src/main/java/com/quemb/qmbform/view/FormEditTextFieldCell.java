@@ -7,17 +7,22 @@ import com.quemb.qmbform.descriptor.Value;
 
 import android.content.Context;
 import android.os.Handler;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by tonimoeckel on 15.07.14.
  */
 public class FormEditTextFieldCell extends FormTitleFieldCell {
 
-    private EditText mEditView;
+    TextInputEditText mEditView;
+//    TextView mTextViewError;
+     TextInputLayout  tInputLayout;
 
     public FormEditTextFieldCell(Context context,
                                  RowDescriptor rowDescriptor) {
@@ -31,16 +36,16 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     protected void init() {
 
         super.init();
-        mEditView = (EditText) findViewById(R.id.editText);
+        mEditView = (TextInputEditText) findViewById(R.id.editText);
         mEditView.setRawInputType(InputType.TYPE_CLASS_TEXT);
-
+        tInputLayout = (TextInputLayout) findViewById(R.id.tInputLayout);
+//        mTextViewError = (TextView)  findViewById(R.id.textViewError);
         setStyleId(mEditView, CellDescriptor.APPEARANCE_TEXT_VALUE, CellDescriptor.COLOR_VALUE);
     }
 
     @Override
     protected void afterInit() {
         super.afterInit();
-
         mEditView.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
@@ -85,6 +90,15 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     }
 
     protected void updateEditView() {
+//        if(mTextViewError!=null)
+        if(getRowDescriptor().getErrorMessage().equals("")) {
+//            mTextViewError.setVisibility(GONE);
+        }else {
+            tInputLayout.setError(getRowDescriptor().getErrorMessage());
+//            mTextViewError.setVisibility(VISIBLE);
+//            mTextViewError.setText(getRowDescriptor().getErrorMessage());
+        }
+
         String hint = getRowDescriptor().getTitleReplacedByHint()? getRowDescriptor().getTitle() : getRowDescriptor().getHint(getContext());
         if (hint != null) {
             mEditView.setHint(hint);
@@ -101,5 +115,6 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     public EditText getEditView() {
         return mEditView;
     }
+
 
 }
