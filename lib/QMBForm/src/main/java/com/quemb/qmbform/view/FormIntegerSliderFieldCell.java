@@ -32,7 +32,7 @@ public class FormIntegerSliderFieldCell extends FormDetailTextInlineFieldCell {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 getDetailTextView().setText(Integer.toString(mSeekBar.getProgress()));
-                onValueChanged(new Value<Integer>(progress));
+                onValueChanged(new Value<Integer>(mSeekBar.getProgress()));
             }
 
             @Override
