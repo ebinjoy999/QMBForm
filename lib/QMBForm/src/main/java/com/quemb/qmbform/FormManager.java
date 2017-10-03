@@ -46,7 +46,7 @@ public class FormManager implements OnFormRowChangeListener, OnFormRowValueChang
 
         final FormAdapter adapter = FormAdapter.newInstance(mFormDescriptor, context);
         listView.setAdapter(adapter);
-        listView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+        listView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
