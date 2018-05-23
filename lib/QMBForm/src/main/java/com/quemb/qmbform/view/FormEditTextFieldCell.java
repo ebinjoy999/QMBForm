@@ -1,10 +1,5 @@
 package com.quemb.qmbform.view;
 
-import com.quemb.qmbform.R;
-import com.quemb.qmbform.descriptor.CellDescriptor;
-import com.quemb.qmbform.descriptor.RowDescriptor;
-import com.quemb.qmbform.descriptor.Value;
-
 import android.content.Context;
 import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
@@ -13,7 +8,11 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.quemb.qmbform.R;
+import com.quemb.qmbform.descriptor.CellDescriptor;
+import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.Value;
 
 /**
  * Created by tonimoeckel on 15.07.14.
@@ -94,7 +93,8 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
         if(getRowDescriptor().getErrorMessage().equals("")) {
 //            mTextViewError.setVisibility(GONE);
         }else {
-            tInputLayout.setError(getRowDescriptor().getErrorMessage());
+            if(tInputLayout!=null)tInputLayout.setError(getRowDescriptor().getErrorMessage());
+            else mEditView.setError(getRowDescriptor().getErrorMessage());
 //            mTextViewError.setVisibility(VISIBLE);
 //            mTextViewError.setText(getRowDescriptor().getErrorMessage());
         }

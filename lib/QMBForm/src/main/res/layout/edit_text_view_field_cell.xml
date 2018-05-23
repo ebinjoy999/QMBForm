@@ -19,7 +19,7 @@
 			<!--android:inputType="textMultiLine"-->
 			<!--android:ems="10"-->
 			<!--android:id="@+id/editText"/>-->
-	<com.quemb.qmbform.view.RoundedBorderedTextInputLayout
+	<android.support.design.widget.TextInputLayout
 		android:id="@+id/tInputLayout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
@@ -28,16 +28,15 @@
 		android:paddingRight="4dp"
 		android:paddingBottom="4dp"
 		android:paddingTop="4dp"
-		android:minLines="8"
+		android:minLines="3"
 		android:gravity="top|left"
 		android:maxLines="20"
 		android:scrollbars="vertical"
 		android:inputType="textMultiLine"
-		android:background="@drawable/edit_text_area_create"
 		android:id="@+id/editText"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content" />
-</com.quemb.qmbform.view.RoundedBorderedTextInputLayout>
+</android.support.design.widget.TextInputLayout>
 	<!--<TextView-->
 		<!--android:layout_marginTop="8dp"-->
 		<!--android:visibility="gone"-->
