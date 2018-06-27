@@ -20,8 +20,7 @@ import com.quemb.qmbform.descriptor.Value;
 public class FormEditTextFieldCell extends FormTitleFieldCell {
 
     TextInputEditText mEditView;
-//    TextView mTextViewError;
-     TextInputLayout  tInputLayout;
+    TextInputLayout  tInputLayout;
 
     public FormEditTextFieldCell(Context context,
                                  RowDescriptor rowDescriptor) {
@@ -33,12 +32,10 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
 
     @Override
     protected void init() {
-
         super.init();
         mEditView = (TextInputEditText) findViewById(R.id.editText);
         mEditView.setRawInputType(InputType.TYPE_CLASS_TEXT);
         tInputLayout = (TextInputLayout) findViewById(R.id.tInputLayout);
-//        mTextViewError = (TextView)  findViewById(R.id.textViewError);
         setStyleId(mEditView, CellDescriptor.APPEARANCE_TEXT_VALUE, CellDescriptor.COLOR_VALUE);
     }
 
@@ -46,9 +43,7 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     protected void afterInit() {
         super.afterInit();
         mEditView.addTextChangedListener(new TextWatcher() {
-
             public void afterTextChanged(Editable s) {
-
                 FormEditTextFieldCell.this.onEditTextChanged(s.toString());
             }
 
@@ -89,7 +84,16 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
     }
 
     protected void updateEditView() {
-//        if(mTextViewError!=null)
+        updateHintErrorText();
+        @SuppressWarnings("unchecked") Value<String> value = (Value<String>) getRowDescriptor().getValue();
+        if (value != null && value.getValue() != null) {
+            String valueString = value.getValue();
+            mEditView.setText(valueString);
+        }
+
+    }
+
+    public void updateHintErrorText() {
         if(getRowDescriptor().getErrorMessage().equals("")) {
 //            mTextViewError.setVisibility(GONE);
         }else {
@@ -102,12 +106,6 @@ public class FormEditTextFieldCell extends FormTitleFieldCell {
         String hint = getRowDescriptor().getTitleReplacedByHint()? getRowDescriptor().getTitle() : getRowDescriptor().getHint(getContext());
         if (hint != null) {
             mEditView.setHint(hint);
-        }
-
-        @SuppressWarnings("unchecked") Value<String> value = (Value<String>) getRowDescriptor().getValue();
-        if (value != null && value.getValue() != null) {
-            String valueString = value.getValue();
-            mEditView.setText(valueString);
         }
 
     }

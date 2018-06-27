@@ -1,14 +1,14 @@
 package com.quemb.qmbform.view;
 
+import android.content.Context;
+import android.widget.TextView;
+
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.descriptor.CellDescriptor;
 import com.quemb.qmbform.descriptor.RowDescriptor;
 import com.quemb.qmbform.descriptor.Value;
 
-import android.content.Context;
-import android.widget.TextView;
-
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -48,7 +48,7 @@ public class FormDateFieldCell extends FormDetailTextInlineFieldCell {
         mTextView.setEnabled(!getRowDescriptor().getDisabled());
 
         @SuppressWarnings("unchecked") Value<Date> value = (Value<Date>) getRowDescriptor().getValue();
-        if (value == null || value.getValue() == null) {
+        if (value == null || value.getValue() == null || !(value.getValue() instanceof Date)) {
             value = new Value<Date>(new Date());
         } else {
             updateDateLabel(value.getValue(), getRowDescriptor().getDisabled());
@@ -58,6 +58,7 @@ public class FormDateFieldCell extends FormDetailTextInlineFieldCell {
         Date date = value.getValue();
         calendar.setTime(date);
 
+//
         initDatePicker(calendar);
 
         if (getRowDescriptor().getDisabled())
@@ -79,17 +80,25 @@ public class FormDateFieldCell extends FormDetailTextInlineFieldCell {
 //        Calendar calendar = Calendar.getInstance();
 //        calendar.set(year, monthOfYear, dayOfMonth);
 //        Date date = new Date(calendar.getTimeInMillis());
-
         updateDateLabel(date, getRowDescriptor().getDisabled());
-
         onValueChanged(new Value<Date>(date));
 
     }
 
-    protected void updateDateLabel(Date date, boolean disabled) {
 
-        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext());
-        String s = dateFormat.format(date);
+    protected void updateDateLabel(Date date, boolean disabled) {
+         String dateFormatter;
+//        if(getTag() instanceof String){
+            dateFormatter = getRowDescriptor().getTag().toString()
+                    .substring(getRowDescriptor().getTag().toString().indexOf("(") + 1,
+                    getRowDescriptor().getTag().toString().indexOf(")"));
+//        }
+//        DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(getContext());
+        if(dateFormatter==null || dateFormatter.length()<6)
+            dateFormatter = "dd/MM/yyyy";
+
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormatter.replace("m","M"));
+        String s = formatter.format(date);
 
         TextView editView = getDetailTextView();
         editView.setText(s);
@@ -108,7 +117,6 @@ public class FormDateFieldCell extends FormDetailTextInlineFieldCell {
 
 
     }
-
     public TextView getTextView() {
         return mTextView;
     }

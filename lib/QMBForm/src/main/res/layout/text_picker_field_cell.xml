@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView"/>
 
-    <EditText
+    <android.support.design.widget.TextInputEditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -15,7 +15,7 @@ buildscript {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 14
@@ -77,24 +77,24 @@ idea {
     }
 }
 
-apply plugin: 'org.sonarqube'
-
-sonarqube {
-    properties {
-        property "sonar.host.url", "http://localhost:9000"
-        property "sonar.jdbc.url", "jdbc:mysql://localhost/sonar"
-        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
-        property "sonar.jdbc.username", "sonar"
-        property "sonar.jdbc.password", "sonar"
-
-        property "sonar.java.binaries", "$buildDir"
-        property "sonar.sources", "src/main/java"
-        property "sonar.tests", "src/test/java"
-
-        property 'sonar.junit.reportsPath', "$buildDir/test-results/release/"
-        property "sonar.jacoco.reportPath", "$buildDir/jacoco/testDebugUnitTest.exec"
-    }
-}
+//apply plugin: 'org.sonarqube'
+//
+//sonarqube {
+//    properties {
+//        property "sonar.host.url", "http://localhost:9000"
+//        property "sonar.jdbc.url", "jdbc:mysql://localhost/sonar"
+//        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+//        property "sonar.jdbc.username", "sonar"
+//        property "sonar.jdbc.password", "sonar"
+//
+//        property "sonar.java.binaries", "$buildDir"
+//        property "sonar.sources", "src/main/java"
+//        property "sonar.tests", "src/test/java"
+//
+//        property 'sonar.junit.reportsPath', "$buildDir/test-results/release/"
+//        property "sonar.jacoco.reportPath", "$buildDir/jacoco/testDebugUnitTest.exec"
+//    }
+//}
 
 
 apply plugin: "jacoco"

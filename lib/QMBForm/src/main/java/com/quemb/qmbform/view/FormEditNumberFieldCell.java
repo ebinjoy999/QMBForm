@@ -1,12 +1,14 @@
 package com.quemb.qmbform.view;
 
-import com.quemb.qmbform.descriptor.RowDescriptor;
-import com.quemb.qmbform.descriptor.Value;
-
 import android.content.Context;
 import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
+
+import com.quemb.qmbform.descriptor.RowDescriptor;
+import com.quemb.qmbform.descriptor.Value;
+
+import java.math.BigDecimal;
 
 /**
  * Created by tonimoeckel on 15.07.14.
@@ -30,10 +32,12 @@ public class FormEditNumberFieldCell extends FormEditTextFieldCell {
     }
 
 
+
     @Override
     protected void updateEditView() {
-
+       super.updateHintErrorText();
         @SuppressWarnings("unchecked") Value<Number> value = (Value<Number>) getRowDescriptor().getValue();
+        onValueChanged(value);
         if (value != null) {
             String valueString = String.valueOf(value.getValue());
             getEditView().setText(valueString);
@@ -43,12 +47,12 @@ public class FormEditNumberFieldCell extends FormEditTextFieldCell {
 
 
     protected void onEditTextChanged(String string) {
-
         try {
-            Float floatValue = Float.parseFloat(string);
+            BigDecimal floatValue =  BigDecimal.valueOf(Double.parseDouble(string));
             onValueChanged(new Value<Number>(floatValue));
         } catch (NumberFormatException e) {
             Log.e(TAG, e.getMessage(), e);
+            onValueChanged(new Value<String>(""));
         }
 
 

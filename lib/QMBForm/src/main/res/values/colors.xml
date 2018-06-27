@@ -9,4 +9,10 @@
     <color name="redColor">#ffa13b3a</color>
     <color name="greenColor">#ff55a14d</color>
 
+    <color name="colorPrimary">#3153c6</color>
+    <color name="colorPrimaryDark">#243d8f</color>
+    <color name="colorPrimaryLight">#5c78d6</color>
+    <color name="colorAccent">#ed254e</color>
+    <color name="colorAccentLight">#f25a78</color>
+
 </resources>
