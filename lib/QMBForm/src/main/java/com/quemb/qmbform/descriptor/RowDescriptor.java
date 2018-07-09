@@ -1,11 +1,10 @@
 package com.quemb.qmbform.descriptor;
 
+import android.content.Context;
+
 import com.quemb.qmbform.R;
 import com.quemb.qmbform.annotation.FormElement;
 import com.quemb.qmbform.annotation.FormValidator;
-import com.quemb.qmbform.view.FormEditTextFieldCell;
-
-import android.content.Context;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -129,7 +128,8 @@ public class RowDescriptor<T> extends FormItemDescriptor {
 
     }
 
-    public static RowDescriptor newInstance(String tag, String rowType, String title, Value<?> value, Boolean isTitleReplacedByHint) {
+    public static RowDescriptor newInstance(String tag, String rowType, String title,
+                                            Value<?> value, Boolean isTitleReplacedByHint) {
 
         RowDescriptor descriptor = new RowDescriptor();
         descriptor.mTitle = title;
